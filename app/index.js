@@ -4,7 +4,7 @@
 
 // Dependancies
 var express = require('express');
-var database = require('.database');
+var database = require('./database');
 
 // Define our application and give it access to express
 var app = express();
