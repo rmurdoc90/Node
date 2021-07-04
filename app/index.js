@@ -4,17 +4,20 @@
 
 // Dependancies
 var express = require('express');
+var database = require('.database');
+
+// Define our application and give it access to express
 var app = express();
 
-// Variables
-var port = 3000;
+// Set port to environment PORT or 3000
+app.set('port', process.env.PORT || 3000)
 
-// Application
-app.get('/', function (req, res) {
-    res.send('Hello World')
-});
+// Router listens to / (root directory)
+app.use('/', router)
 
-app.listen(port, function(err){
-    if(err) console.log('Error in server set up', err)
-    console.log(`Server listening on port ${port}`)
+database(function(){
+    app.listen(app.get('port'), function(){
+    console.log('Express server listening on port ' + app.get('port'));
+    console.log('Your application is running. You should be able to connect to it with http://localhost:' + app.get('port'));
+    })
 })
