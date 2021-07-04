@@ -16,7 +16,8 @@ dbConnection += databaseParameters.host + ':' + databaseParameters.port + '/' + 
 
 // Requiring this module will be in function fashion (index.js)
 module.exports = function(callback){
-    mongoose.connect(dbConnection);
+    mongoose.connect(dbConnection, { useNewUrlParser: true });
+    mongoose.set('useUnifiedTopology', true);
     var db = mongoose.connection;
 
     //Connection events: when successfully connected
